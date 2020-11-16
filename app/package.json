@@ -7,15 +7,10 @@
     "test": "jest --coverage",
     "watch": "jest --watch"
   },
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(css|less|scss|sass)$": "<rootDir>/__mocks__/styleMock.js"
-    }
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
     "serverless": "^1.67.0"
   },
   "devDependencies": {
