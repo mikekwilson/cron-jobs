@@ -21,11 +21,11 @@ class AwsSnsNotificationService {
     try {
       return this.client.publish({
         Message: payload.message,
-        TopicArn: 'aws:arn:sns:'
-        + process.env.AWS_REGION + ':'
-        + process.env.AWS_ACCOUNT + ':'
-        + payload.topic + '-'
-        + process.env.NODE_ENV
+        TopicArn: `aws:arn:sns:`
+        + `${process.env.AWS_REGION}:`
+        + `${process.env.AWS_ACCOUNT}:`
+        + `${payload.topic}-`
+        + `${process.env.NODE_ENV}`
       }).MessageId;
 
     } catch($e) {

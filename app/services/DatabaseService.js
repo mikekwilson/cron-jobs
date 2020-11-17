@@ -21,10 +21,10 @@ class DatabaseService {
    */
   async query(querystring) {
     const conn = await this.connect();
-    const [rows, field] = await conn.execute(querystring);
+    const result = await conn.execute(querystring);
     await conn.end();
 
-    return rows;
+    return result[0];
 
   }
 
