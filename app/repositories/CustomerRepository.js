@@ -2,7 +2,7 @@
 
 class CustomerRepository {
   constructor(db) {
-    this._db = db;
+    this.db = db;
 
   }
 
@@ -20,7 +20,7 @@ class CustomerRepository {
       WHERE creation_date = ${date}
     `;
 
-    return this._db.query(query);
+    return this.db.query(query);
 
   }//end getCustomerByAccountCreationDate()
 

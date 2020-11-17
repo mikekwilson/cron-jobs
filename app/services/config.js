@@ -7,6 +7,11 @@ const config = {
     user:     process.env.CUSTOMER_DB_USER,
     password: process.env.CUSTOMER_DB_PASS,
     database: process.env.CUSTOMER_DB_NAME
+  },
+
+  AWS_SNS_CONFIG: {
+    apiVersion: '2010-03-31',
+    endpoint: process.env.SNS_ENDPOINT
   }
 
 };

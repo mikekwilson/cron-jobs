@@ -1,4 +1,4 @@
-// DatabaseService.test.ja
+// DatabaseService.test.js
 
 //Load test subject
 const DatabaseService = require('../../../services/DatabaseService.js');
@@ -33,4 +33,3 @@ test('query', async () => {
   expect(result).toBe('rows');
 
 });
-

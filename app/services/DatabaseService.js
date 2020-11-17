@@ -8,7 +8,7 @@ class DatabaseService {
   }
 
   async connect() {
-    return await db.createConnection(this.config);
+    return db.createConnection(this.config);
 
   }
 
