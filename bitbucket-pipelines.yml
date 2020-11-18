@@ -11,12 +11,10 @@ clone:
 definitions:
   caches:
     sonar: ~/.sonar/cache
-    nodemodules: ~/app/node_modules
   steps:
     - step: &build-test-sonarcloud
             name: Build, test and analyze on SonarCloud
             caches:
-              - nodemodules
               - sonar
               - node
             script:
@@ -25,10 +23,10 @@ definitions:
               - pipe: sonarsource/sonarcloud-scan:1.0.1
                 variables:
                   EXTRA_ARGS: '
-                    -Dsonar.sources=app
-                    -Dsonar.tests=app/__tests__
-                    -Dsonar.exclusions=app/node_modules/,app/lib/resources/**/*,**/*.test.*
-                    -Dsonar.javascript.lcov.reportPaths=app/coverage/lcov.info'
+                    -Dsonar.sources=handlers,repositories,services
+                    -Dsonar.tests=__tests__
+                    -Dsonar.exclusions=node_modules/,**/*.test.*
+                    -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info'
     - step: &check-quality-gate-sonarcloud
             name: Check the Quality Gate on SonarCloud
             script:
@@ -40,7 +38,7 @@ definitions:
               - nodemodules
             script:
               - make install
-              - cd app && npx sls deploy -s ${STAGE}
+              - npx sls deploy -s ${STAGE}
     - step: &deploy-aws-prod
             name: Deploy to Production stage
             deployment: Production
@@ -48,7 +46,7 @@ definitions:
               - nodemodules
             script:
               - make install
-              - cd app && npx sls deploy -s ${STAGE}
+              - npx sls deploy -s ${STAGE}
 
 pipelines:
   branches:

@@ -6,8 +6,5 @@ jspm_packages
 .serverless
 .webpack
 
-# DynamoDB Local
-.dynamodb
-
-app/output
-app/coverage
+output
+coverage
