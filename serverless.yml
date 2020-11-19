@@ -37,6 +37,10 @@ custom:
     packager: 'npm'
     excludeFiles: '/__tests__/**'
 
+  dotenv:
+    required:
+      file: false
+
 #Default AWS Setting
 provider:
   name: aws
