@@ -2,11 +2,11 @@
 
 const config = {
   DB_CONFIG: {
-    host:     process.env.CUSTOMER_DB_HOST,
-    port:     process.env.CUSTOMER_DB_PORT,
-    user:     process.env.CUSTOMER_DB_USER,
-    password: process.env.CUSTOMER_DB_PASS,
-    database: process.env.CUSTOMER_DB_NAME
+    host:     process.env.DB_HOST,
+    port:     process.env.DB_PORT,
+    user:     process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME
   },
 
   AWS_SNS_CONFIG: {

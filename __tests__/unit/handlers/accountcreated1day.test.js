@@ -1,7 +1,7 @@
 // accountcreated1day.test.js
 
 //Load test subject
-const handler = require('../../../handlers/accountcreated1day.js');
+const handler = require('../../../functions/accountcreated1day/handler.js');
 
 //Load Dependencies
 const CustomerRepo = require('../../../repositories/CustomerRepository.js');

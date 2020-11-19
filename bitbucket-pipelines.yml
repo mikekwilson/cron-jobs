@@ -57,7 +57,7 @@ pipelines:
     develop:
       - step: *build-test-sonarcloud
       - step: *check-quality-gate-sonarcloud
-      # - step: *deploy-aws-qa
+      - step: *deploy-aws-qa
   pull-requests:
     '**':
       - step: *build-test-sonarcloud

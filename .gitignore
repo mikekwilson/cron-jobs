@@ -6,5 +6,6 @@ jspm_packages
 .serverless
 .webpack
 
+.env
 output
 coverage

@@ -11,55 +11,70 @@
 #
 # Happy Coding!
 
-service: portal-reporting
 # app and org for use with dashboard.serverless.com
-app: portal-reporting
 org: suitsme
+app: cron-jobs
+service: cardholder-portal-reporting
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
-frameworkVersion: '1'
+frameworkVersion: '2'
 
+plugins:
+  - serverless-webpack
+  - serverless-dotenv-plugin
+  - serverless-iam-roles-per-function
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+
+  webpack:
+    webpackConfig: 'webpack.config.js'
+    includeModules:
+      forceExclude:
+        - aws-sdk
+
+    packager: 'npm'
+    excludeFiles: '/__tests__/**'
+
+#Default AWS Setting
 provider:
   name: aws
   runtime: nodejs12.x
+  stage: dev
+  region: eu-west-1
+  memorySize: 256
+  deploymentBucket:
+    maxPreviousDeploymentArtifacts: 5
+  vpc:
+    subnetIds:
+      - subnet-9f9b0de9
+      - subnet-0ea2b8c400c6945dc
+    securityGroupIds:
+      - sg-0939c528adbc20aeb
 
-# you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
+#Shared env vars
+  environment:
+    NODE_ENV: ${self:custom.stage}
 
-# you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:PutObject"
-#      Resource:
-#        Fn::Join:
-#          - ""
-#          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDeploymentBucket"
-#            - "/*"
-
-# you can define service wide environment variables here
-#  environment:
-#    variable1: value1
+    DB_HOST: ${env:DB_HOST};
+    DB_PORT: ${env:DB_PORT};
+    DB_USER: ${env:DB_USER};
+    DB_PASS: ${env:DB_PASS};
+    DB_NAME: ${env:DB_NAME};
 
 # you can add packaging information here
-#package:
-#  include:
-#    - include-me.js
-#    - include-me-dir/**
-#  exclude:
-#    - exclude-me.js
-#    - exclude-me-dir/**
+package:
+  individually: true
+#   include:
+#      - service/lib/**
+  exclude:
+    - ./__tests__/**
+    - ./coverage/**
 
 functions:
-  hello:
-    handler: handler.hello
+  accountcreated1day: ${file(functions/accountcreated1day/config.yml):function}
+
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details

@@ -1,0 +1,18 @@
+# config.yml
+function:
+  handler: functions/accountcreated1day/handler.accountcreated1day
+  events:
+    - schedule: cron(55 7 * * ? *)
+  environment:
+    TOPIC_NAME: 'AccountCreated-1Day'
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "sns:Publish"
+      Resource:
+        Fn::Join:
+          - ':'
+          - - 'arn:aws:sns'
+            - Ref: 'AWS::Region'
+            - Ref: 'AWS::AccountId'
+            - ${self:functions.accountcreated1day.environment.TOPIC_NAME}-${self:custom.stage}
