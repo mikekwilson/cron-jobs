@@ -23,7 +23,7 @@ definitions:
               - pipe: sonarsource/sonarcloud-scan:1.0.1
                 variables:
                   EXTRA_ARGS: '
-                    -Dsonar.sources=handlers,repositories,services
+                    -Dsonar.sources=functions,repositories,services
                     -Dsonar.tests=__tests__
                     -Dsonar.exclusions=node_modules/,**/*.test.*
                     -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info'
