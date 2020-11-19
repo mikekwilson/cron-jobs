@@ -39,6 +39,7 @@ definitions:
             caches:
               - node
             script:
+              - touch .env
               - make install
               - npx sls deploy -s ${STAGE}
 
@@ -48,6 +49,7 @@ definitions:
             caches:
               - node
             script:
+              - touch .env
               - make install
               - npx sls deploy -s ${STAGE}
 
