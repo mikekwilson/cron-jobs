@@ -94,7 +94,8 @@ functions:
             - - 'arn:aws:sns'
               - Ref: 'AWS::Region'
               - Ref: 'AWS::AccountId'
-              - ${self:functions.accountcreated1day.environment.TOPIC_NAME}-${self:custom.stage}
+              - AccountCreated-1Day-${self:custom.stage}
+              # - ${self:functions.accountcreated1day.environment.TOPIC_NAME}-${self:custom.stage}
 
 
 #    The following are a few example events you can configure
