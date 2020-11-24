@@ -23,8 +23,8 @@ describe('getCustomerByAccountCreationDate', () => {
     const date = '01/01/2020';
     const query = `
       SELECT *
-      FROM candidates AS c
-      WHERE creation_date = ${date}
+      FROM candidates
+      WHERE creation_date = '${date}'
     `;
     const result = await customerRepo.getCustomerByAccountCreationDate(date);
 

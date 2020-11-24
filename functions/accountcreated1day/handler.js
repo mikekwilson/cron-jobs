@@ -14,13 +14,14 @@ module.exports.accountcreated1day = async function(event, context) {
   const snsService = new AwsSnsNotificationService(config.AWS_SNS_CONFIG);
 
   const creationDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
-  const customers = customerRepo.getCustomerByAccountCreationDate(creationDate);
+  const customers = await customerRepo.getCustomerByAccountCreationDate(creationDate);
 
   customers.forEach(customer => {
     snsService.publish({
       message: customer,
       topic: process.env.TOPIC_NAME
     })
+
   })
 
 }

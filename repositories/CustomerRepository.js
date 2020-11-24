@@ -16,11 +16,11 @@ class CustomerRepository {
   async getCustomerByAccountCreationDate(date) {
     const query = `
       SELECT *
-      FROM candidates AS c
-      WHERE creation_date = ${date}
+      FROM candidates
+      WHERE creation_date = '${date}'
     `;
 
-    return this.db.query(query);
+    return await this.db.query(query);
 
   }//end getCustomerByAccountCreationDate()
 
