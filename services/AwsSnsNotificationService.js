@@ -25,7 +25,7 @@ class AwsSnsNotificationService {
         + `${process.env.AWS_REGION}:`
         + `${process.env.AWS_ACCOUNT}:`
         + `${payload.topic}-`
-        + `${process.env.NODE_ENV}`
+        + `${process.env.APP_ENV}`
       }).MessageId;
 
     } catch($e) {
