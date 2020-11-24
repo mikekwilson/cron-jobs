@@ -30,9 +30,7 @@ describe('publish', () => {
   }
 
   const expectedPublish = {
-    Message : {
-      hello : 'world'
-    },
+    Message : "{\"hello\":\"world\"}",
     TopicArn: 'arn:aws:sns:eu-west-1:000000000000:hello-world-test'
   }
 

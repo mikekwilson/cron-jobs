@@ -20,7 +20,7 @@ class AwsSnsNotificationService {
   async publish(payload) {
     try {
       return this.client.publish({
-        Message: payload.message,
+        Message: JSON.stringify(payload.message),
         TopicArn: `arn:aws:sns:`
         + `${process.env.AWS_REGION}:`
         + `${process.env.AWS_ACCOUNT}:`
