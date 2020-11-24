@@ -39,6 +39,7 @@ describe('publish', () => {
   beforeAll(() => {
     process.env.AWS_REGION = 'eu-west-1';
     process.env.AWS_ACCOUNT = '000000000000';
+    process.env.APP_ENV = 'test';
   });
 
   afterAll(() => {
