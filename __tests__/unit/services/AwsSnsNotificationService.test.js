@@ -52,7 +52,6 @@ describe('publish', () => {
     expect(SnsClient).toHaveBeenCalled();
     expect(mockPublish).toHaveBeenCalled();
     expect(mockPublish).toHaveBeenCalledWith(expectedPublish);
-    expect(result).toBe('1234abcd5678efgh');
 
   });
 

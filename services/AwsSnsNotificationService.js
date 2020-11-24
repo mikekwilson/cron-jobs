@@ -26,12 +26,6 @@ class AwsSnsNotificationService {
         + `${process.env.AWS_ACCOUNT}:`
         + `${payload.topic}-`
         + `${process.env.APP_ENV}`
-      }, (err, data) => {
-        if (err) {
-          console.error(err, err.stack)
-        } else {
-          console.log('Publish successful: ' + JSON.stringify(data))
-        };
       });
 
     } catch($e) {
