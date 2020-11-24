@@ -21,7 +21,7 @@ class AwsSnsNotificationService {
     try {
       return this.client.publish({
         Message: payload.message,
-        TopicArn: `aws:arn:sns:`
+        TopicArn: `arn:aws:sns:`
         + `${process.env.AWS_REGION}:`
         + `${process.env.AWS_ACCOUNT}:`
         + `${payload.topic}-`
@@ -29,6 +29,7 @@ class AwsSnsNotificationService {
       }).MessageId;
 
     } catch($e) {
+      console.error($e);
       return false;
 
     }
