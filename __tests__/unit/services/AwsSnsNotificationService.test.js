@@ -33,7 +33,7 @@ describe('publish', () => {
     Message : {
       hello : 'world'
     },
-    TopicArn: 'aws:arn:sns:eu-west-1:000000000000:hello-world-test'
+    TopicArn: 'arn:aws:sns:eu-west-1:000000000000:hello-world-test'
   }
 
   beforeAll(() => {
