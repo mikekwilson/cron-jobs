@@ -4,6 +4,7 @@ const AwsSnsNotificationService = require('../../services/AwsSnsNotificationServ
 const CustomerRepo = require('../../repositories/CustomerRepository.js');
 const DatabaseService = require('../../services/DatabaseService.js');
 const config = require('../../services/config.js');
+const moment = require('moment');
 
 module.exports.accountcreated1day = async function(event, context) {
   'use strict';
@@ -12,7 +13,8 @@ module.exports.accountcreated1day = async function(event, context) {
   const customerRepo = new CustomerRepo(db);
   const snsService = new AwsSnsNotificationService(config.AWS_SNS_CONFIG);
 
-  const customers = customerRepo.getCustomerByAccountCreationDate();
+  const creationDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
+  const customers = customerRepo.getCustomerByAccountCreationDate(creationDate);
 
   customers.forEach(customer => {
     snsService.publish({

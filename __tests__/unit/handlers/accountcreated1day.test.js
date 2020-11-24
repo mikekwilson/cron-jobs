@@ -7,6 +7,7 @@ const handler = require('../../../functions/accountcreated1day/handler.js');
 const CustomerRepo = require('../../../repositories/CustomerRepository.js');
 const DatabaseService = require('../../../services/DatabaseService.js');
 const AwsSnsNotificationService = require('../../../services/AwsSnsNotificationService.js');
+const moment = require('moment');
 
 //Setup Mocks
 jest.mock('../../../services/DatabaseService.js');
@@ -64,7 +65,9 @@ describe('Handler ', () => {
   });
 
   test('gets result from repo', () => {
+    const creationDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
     expect(mockGetCustomers).toHaveBeenCalled();
+    expect(mockGetCustomers).toHaveBeenCalledWith(creationDate);
 
   });
 
