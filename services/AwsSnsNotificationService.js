@@ -19,7 +19,7 @@ class AwsSnsNotificationService {
    */
   async publish(payload) {
     try {
-      return await this.client.publish({
+      const result = await this.client.publish({
         Message: JSON.stringify(payload.message),
         TopicArn: `arn:aws:sns:`
         + `${process.env.AWS_REGION}:`
@@ -27,6 +27,8 @@ class AwsSnsNotificationService {
         + `${payload.topic}-`
         + `${process.env.APP_ENV}`
       }).promise();
+
+      return result.MessageId;
 
     } catch($e) {
       console.error($e);

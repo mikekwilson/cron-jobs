@@ -16,12 +16,13 @@ module.exports.accountcreated1day = async function(event, context) {
   const creationDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
   const customers = await customerRepo.getCustomerByAccountCreationDate(creationDate);
 
-  customers.forEach(customer => {
-    snsService.publish({
+  // customers.forEach(customer => {
+  for (const customer of customers) {
+    console.log(await snsService.publish({
       message: customer,
       topic: process.env.TOPIC_NAME
-    })
-
-  })
+    }));
+  }
+  // })
 
 }

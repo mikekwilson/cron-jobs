@@ -46,9 +46,10 @@ test('Test setup complete', () => {
 
 describe('Handler ', () => {
   const OLD_ENV = process.env;
+  let result;
 
-  beforeAll(() => {
-    handler.accountcreated1day( {}, {} );
+  beforeAll(async () => {
+    result = await handler.accountcreated1day( {}, {} );
     process.env.TOPIC_NAME = 'accountcreated-1day';
 
   });
