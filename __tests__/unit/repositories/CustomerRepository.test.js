@@ -34,3 +34,21 @@ describe('getCustomerByAccountCreationDate', () => {
   });
 
 });
+
+describe('getCustomersByCardActivationDate', () => {
+  test('DB is Queried with correct SQL', async () => {
+    db.query.mockReturnValue('rows');
+    const date = '01/01/2020';
+    const query = `
+      SELECT *
+      FROM candidates
+      WHERE activation_date = '${date}'
+    `;
+    const result = await customerRepo.getCustomersByCardActivationDate(date);
+
+    expect(db.query).toHaveBeenCalledWith(query);
+    expect(result).toBe('rows');
+
+  });
+
+})

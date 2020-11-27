@@ -1,0 +1,19 @@
+# config.yml
+function:
+  handler: functions/cardactivated/handler.cardactivated
+  timeout: 30
+  events:
+    - schedule: cron(55 8 * * ? *)
+  environment:
+    TOPIC_NAME: 'CardActivated'
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "sns:Publish"
+      Resource:
+        Fn::Join:
+          - ':'
+          - - 'arn:aws:sns'
+            - Ref: 'AWS::Region'
+            - Ref: 'AWS::AccountId'
+            - ${self:functions.cardactivated.environment.TOPIC_NAME}-${self:custom.stage}
