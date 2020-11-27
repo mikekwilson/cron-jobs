@@ -1,6 +1,7 @@
 # config.yml
 function:
   handler: functions/accountcreated1day/handler.accountcreated1day
+  timeout: 12
   events:
     - schedule: cron(55 7 * * ? *)
   environment:
