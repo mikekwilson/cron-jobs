@@ -16,11 +16,12 @@ module.exports.cardactivated = async function(event, context) {
   const activationDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
   const customersWithActiveCards = await customerRepo.getCustomersByCardActivationDate(activationDate);
 
-  customersWithActiveCards.forEach(customer => {
-    console.log(snsService.publish({
+  for (const customer of customersWithActiveCards) {
+    console.log(await snsService.publish({
       message: customer,
       topic: process.env.TOPIC_NAME
+
     }));
-  })
+  };
 
 }
