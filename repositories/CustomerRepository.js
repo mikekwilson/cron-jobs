@@ -24,6 +24,24 @@ class CustomerRepository {
 
   }//end getCustomerByAccountCreationDate()
 
+  /**
+   * Fetch all customer records with cards activated on the given date
+   *
+   * @param {string} date
+   *
+   * @return {array}
+   */
+  async getCustomersByCardActivationDate(date) {
+    const query = `
+      SELECT *
+      FROM candidates
+      WHERE activation_date = '${date}'
+    `;
+
+    return await this.db.query(query);
+
+  }//end getCustomersByCardActivationDate()
+
 }//end class
 
 module.exports = CustomerRepository;
